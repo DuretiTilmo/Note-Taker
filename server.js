@@ -17,7 +17,7 @@ app.use(express.static('public'));
 // GET Route for homepage
 app.get('/', (req, res) =>{
   console.log("Temam Get1");
-  res.sendFile(path.join(__dirname, './Develop/public/index.html')
+  res.sendFile(path.join(__dirname, './public/index.html')
   )
   
 });
@@ -25,13 +25,13 @@ app.get('/', (req, res) =>{
 // GET Route for notes page
 app.get('/notes', (req, res) =>{
   // console.log("Temam Get2");
-  res.sendFile(path.join(__dirname, './Develop/public/notes.html'))
+  res.sendFile(path.join(__dirname, './public/notes.html'))
 });
 
 // GET Route for retrieving all saved notes
 app.get('/api/notes', (req, res) => {
   console.info(`${req.method} request received for notes`);
-  readFromFile('./Develop/db/db.json').then((data) => {
+  readFromFile('./db/db.json').then((data) => {
     console.log(JSON.parse(data));
     res.json(JSON.parse(data))});
 });
@@ -48,7 +48,7 @@ app.post('/api/notes', (req, res) => {
      text,
      id: uuid(),
      }
-    readAndAppend(newNote, './Develop/db/db.json');
+    readAndAppend(newNote, './db/db.json');
   //  console.log('test write file')
       const response = {
         status: 'success',
@@ -67,7 +67,7 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
 
 if (req.params.id){ 
-  readAndDelete(req.params.id, './Develop/db/db.json');
+  readAndDelete(req.params.id, './db/db.json');
 console.log(req.params.id);
 
 const response = {

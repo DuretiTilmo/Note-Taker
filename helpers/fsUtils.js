@@ -1,7 +1,6 @@
 const fs = require('fs');
 const util = require('util');
 
-// Promise version of fs.readFile
 const readFromFile = util.promisify(fs.readFile);
 
 const writeToFile = (destination, content) =>
@@ -27,7 +26,6 @@ const readAndAppend = (content, file) => {
         console.error(err);
       } else {
         const parsedData = JSON.parse(data);
-        // parsedData.push(content);
         let newList = [];
         let index = getIndex(id, parsedData);
 
@@ -35,7 +33,6 @@ const readAndAppend = (content, file) => {
            newList = parsedData.filter(parsedData => parsedData.id !== id);
            console.log(newList);
         }
-        // delete parsedData[index];
         writeToFile(file, newList);
 
       }
