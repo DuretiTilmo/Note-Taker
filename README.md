@@ -24,6 +24,6 @@ Deployed app URL:
     ​  
 ## Test 
 
-    node server.js
+    node server.js  or npm start
 -----------------------------------
 &copy; 2023
