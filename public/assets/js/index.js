@@ -71,7 +71,6 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
-  console.log("save dureti");
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -175,7 +174,6 @@ const renderNoteList = async (notes) => {
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
-  console.log("i'm at evnt listner");
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);

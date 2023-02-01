@@ -7,16 +7,13 @@ const uuid = require('./helpers/uuid');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-
 // GET Route for homepage
 app.get('/', (req, res) =>{
-  console.log("Temam Get1");
   res.sendFile(path.join(__dirname, './public/index.html')
   )
   
@@ -24,7 +21,6 @@ app.get('/', (req, res) =>{
 
 // GET Route for notes page
 app.get('/notes', (req, res) =>{
-  // console.log("Temam Get2");
   res.sendFile(path.join(__dirname, './public/notes.html'))
 });
 
@@ -32,14 +28,12 @@ app.get('/notes', (req, res) =>{
 app.get('/api/notes', (req, res) => {
   console.info(`${req.method} request received for notes`);
   readFromFile('./db/db.json').then((data) => {
-    console.log(JSON.parse(data));
-    res.json(JSON.parse(data))});
+  res.json(JSON.parse(data))});
 });
 
 // POST Route for receiving and saving note to db.json file
 app.post('/api/notes', (req, res) => {
   console.info(`${req.method} request received for notes`);
-
   const { title, text} = req.body;
     
   if (req.body) {
@@ -49,27 +43,21 @@ app.post('/api/notes', (req, res) => {
      id: uuid(),
      }
     readAndAppend(newNote, './db/db.json');
-  //  console.log('test write file')
       const response = {
         status: 'success',
         body: newNote
       };
-
-  res.json(response);
+    res.json(response);
   } 
   else {
     res.json('Error in posting notes'); 
   }
-
 });
 
 //DELETE Route to delete selected note
 app.delete('/api/notes/:id', (req, res) => {
-
 if (req.params.id){ 
   readAndDelete(req.params.id, './db/db.json');
-console.log(req.params.id);
-
 const response = {
   status: 'Successfully Deleted!',
   body: req.params.id,
@@ -79,7 +67,6 @@ const response = {
     res.json('Error in deleting notes');
   }
 });
-
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
