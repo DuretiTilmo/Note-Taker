@@ -3,5 +3,10 @@
         "title": "Plan for the next trip",
         "text": "yes",
         "id": "0bc4"
+    },
+    {
+        "title": "my note",
+        "text": "text",
+        "id": "9dab"
     }
 ]

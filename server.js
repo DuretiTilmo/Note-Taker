@@ -21,7 +21,7 @@ app.get('/', (req, res) =>{
 
 // GET Route for notes page
 app.get('/notes', (req, res) =>{
-  res.sendFile(path.join(__dirname, './notes.html'))
+  res.sendFile(path.join(__dirname, './public/notes.html'))
 });
 
 // GET Route for retrieving all saved notes
